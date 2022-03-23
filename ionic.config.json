@@ -1,6 +1,8 @@
 {
   "name": "subscriptions-tracker",
-  "app_id": "com.devengoratela.subscriptions.tracker",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react",
-  "integrations": {}
+  "id": "com.devengoratela.subscriptions.tracker"
 }

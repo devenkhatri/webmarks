@@ -1,6 +1,6 @@
-import MessageListItem from '../components/MessageListItem';
+import RowItemList from '../components/RowItemList';
 import { useState } from 'react';
-import { Message, getMessages } from '../data/messages';
+import { RowItem, getRowItems } from '../data/rowitem';
 import {
   IonContent,
   IonHeader,
@@ -8,20 +8,24 @@ import {
   IonPage,
   IonRefresher,
   IonRefresherContent,
+  IonSearchbar,
   IonTitle,
   IonToolbar,
   useIonViewWillEnter
 } from '@ionic/react';
 import './Home.css';
+import SkeletonItem from '../components/SkeletonItem';
 
 const Home: React.FC = () => {
 
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [rowItems, setRowItems] = useState<RowItem[]>([]);
+  const [searchText, setSearchText] = useState('');
 
-  useIonViewWillEnter(() => {
-    const msgs = getMessages();
-    setMessages(msgs);
-  });
+  useIonViewWillEnter(async () => {
+    console.log("****** REACT_APP_AIRTABLE_KEY", process.env.REACT_APP_AIRTABLE_KEY)
+    const items = await getRowItems();
+    setRowItems(items);
+  }, []);
 
   const refresh = (e: CustomEvent) => {
     setTimeout(() => {
@@ -33,7 +37,7 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar color='primary'>
-          <IonTitle>Inbox</IonTitle>
+          <IonTitle>Subscription Tracker</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -44,13 +48,23 @@ const Home: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">
-              Inbox
+            Subscription Tracker
             </IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="never" animated placeholder="Filter Items"></IonSearchbar>
         <IonList>
-          {messages.map(m => <MessageListItem key={m.id} message={m} />)}
+          {rowItems && rowItems.length>0 && rowItems.map(r => <RowItemList key={r.id} rowItem={r} searchText={searchText} />)}
+          {rowItems && rowItems.length<=0 && 
+            <>
+              <SkeletonItem />
+              <SkeletonItem />
+              <SkeletonItem />
+              <SkeletonItem />
+              <SkeletonItem />
+              <SkeletonItem />
+            </>
+          }
         </IonList>
       </IonContent>
     </IonPage>
