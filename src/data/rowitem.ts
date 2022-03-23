@@ -2,22 +2,22 @@ import { getAirtableData } from "./helper";
 
 export interface RowItem {
   name: string;
-  enddate: string;
-  id: number;
-  remainingdays: string;
-  remainingdays_n?: number;
+  source: string;
+  id: string;
+  url: string;
+  isdesktopmode?: boolean;
 }
 
 const rowItems: RowItem[] = [];
 
 export const getRowItems = async () => {
-  const airtableRecords:any = await getAirtableData(process.env.REACT_APP_AIRTABLE_KEY, process.env.REACT_APP_AIRTABLE_BASE, process.env.REACT_APP_AIRTABLE_TABLE,'Grid view','',[{field: 'End Date'}])
+  const airtableRecords:any = await getAirtableData(process.env.REACT_APP_AIRTABLE_KEY, process.env.REACT_APP_AIRTABLE_BASE, process.env.REACT_APP_AIRTABLE_TABLE,'Grid view','',[])
   airtableRecords.forEach(function (record: any) {
     const item = {
       name: record.get('Name'),
-      enddate: record.get('End Date'),
-      remainingdays: record.get('Remaining Days'),
-      remainingdays_n: record.get('Remaining Days N'),
+      source: record.get('Source'),
+      url: record.get('URL'),
+      isdesktopmode: !!record.get('IsDesktopMode?'),
       id: record.id
     }    
     console.log('Retrieved', item);
@@ -26,4 +26,4 @@ export const getRowItems = async () => {
   return rowItems;
 };
 
-export const getRowItem = (id: number) => rowItems.find(r => r.id === id);
+export const getRowItem = (id: string) => rowItems.find(r => r.id === id);

@@ -1,5 +1,5 @@
 {
-  "name": "Subscriptions Tracker",
+  "name": "WebMarks",
   "baseref": "main",
   "tarignore": [
     "node_modules",

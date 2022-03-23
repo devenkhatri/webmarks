@@ -22,7 +22,6 @@ const Home: React.FC = () => {
   const [searchText, setSearchText] = useState('');
 
   useIonViewWillEnter(async () => {
-    console.log("****** REACT_APP_AIRTABLE_KEY", process.env.REACT_APP_AIRTABLE_KEY)
     const items = await getRowItems();
     setRowItems(items);
   }, []);
@@ -37,7 +36,7 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar color='primary'>
-          <IonTitle>Subscription Tracker</IonTitle>
+          <IonTitle>Webmarks</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -48,7 +47,7 @@ const Home: React.FC = () => {
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">
-            Subscription Tracker
+            Webmarks
             </IonTitle>
           </IonToolbar>
         </IonHeader>

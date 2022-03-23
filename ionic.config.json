@@ -1,8 +1,8 @@
 {
-  "name": "subscriptions-tracker",
+  "name": "webmarks",
   "integrations": {
     "capacitor": {}
   },
   "type": "react",
-  "id": "com.devengoratela.subscriptions.tracker"
+  "id": "com.devengoratela.webmarks"
 }
