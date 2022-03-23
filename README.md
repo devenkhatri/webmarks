@@ -1,3 +1,3 @@
-# subscriptions-tracker
+# webmarks
 
-### Tracking all the subscriptions in one go
+### Web Bookmarks in single app
