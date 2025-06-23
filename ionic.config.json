@@ -1,8 +1,0 @@
-{
-  "name": "webmarks",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react",
-  "id": "com.devengoratela.webmarks"
-}
