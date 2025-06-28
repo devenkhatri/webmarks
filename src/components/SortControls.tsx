@@ -9,10 +9,10 @@ interface SortControlsProps {
 
 export const SortControls: React.FC<SortControlsProps> = ({ currentSort, onSortChange }) => {
   const sortOptions = [
-    { mode: 'none' as SortMode, label: 'Natural Order', icon: ArrowUpDown },
+    { mode: 'latest-first' as SortMode, label: 'Latest First', icon: Clock },    
     { mode: 'name-asc' as SortMode, label: 'A → Z', icon: ArrowUp },
     { mode: 'name-desc' as SortMode, label: 'Z → A', icon: ArrowDown },
-    { mode: 'latest-first' as SortMode, label: 'Latest First', icon: Clock },
+    { mode: 'none' as SortMode, label: 'Natural Order', icon: ArrowUpDown },
   ];
 
   return (
