@@ -20,7 +20,7 @@ function App() {
   const [selectedTag, setSelectedTag] = useState('');
   const [configPanelOpen, setConfigPanelOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [sortMode, setSortMode] = useState<SortMode>('none');
+  const [sortMode, setSortMode] = useState<SortMode>('latest-first');
 
   const { bookmarks, loading, error, refetch } = useGoogleSheets(config);
 
